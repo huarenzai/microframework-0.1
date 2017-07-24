@@ -12,6 +12,7 @@
         <module>micro-common</module>
         <module>micro-db</module>
         <module>micro-web</module>
+        <module>micro-web-base</module>
     </modules>
 
 
