@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:monitor protocol="registry" />
+    <dubbo:registry address="zookeeper://123.207.187.158:2199" protocol="dubbo" id="remoteAddress" timeout="20000" file="dubbo/remote/test/dubbo.cache"/>
+    <dubbo:provider timeout="10000" retries="0" registry="remoteAddress"></dubbo:provider>
+    <dubbo:consumer check="false" registry="remoteAddress"></dubbo:consumer>
+
+    <dubbo:application name="task-web" />
+    <dubbo:protocol  name="dubbo" port="21902"></dubbo:protocol>
+
+    <dubbo:reference interface="api.TaskAllocationSdkService" id="taskAllocationSdkService"></dubbo:reference>
+
+</beans>
